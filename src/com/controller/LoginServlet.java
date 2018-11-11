@@ -45,6 +45,7 @@ public class LoginServlet extends HttpServlet {
 		lst.add(l);
 
 		HttpSession ses = request.getSession();
+		ses.setAttribute("isLoggedIn",true);
 
 
 
@@ -54,6 +55,8 @@ public class LoginServlet extends HttpServlet {
 		if(request.getParameter("type").equals("admin")) {
 			if(x.searchAdmin(lst)) {
 				ses.setAttribute("err", "false");
+				ses.setAttribute("isLoggedIn",true);
+
 
 				response.sendRedirect("AdminHome.jsp");
 			}

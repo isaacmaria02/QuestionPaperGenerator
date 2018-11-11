@@ -4,7 +4,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <%
-if(!session.isNew()){
+if(session.getAttribute("isLoggedIn")!=null){
 %>
 	
 <!DOCTYPE html>
@@ -130,7 +130,6 @@ border: 1px solid black;
 
 
 <%
-if(!session.isNew()){
 
 	
 	
@@ -171,7 +170,7 @@ if(!session.isNew()){
 	}
 	
 	
-}
+
 
 
 %>
@@ -477,10 +476,14 @@ function myFunction() {
 </body>
 </html>
 
-<%}
+<%
+
+}
 else
+
 {
 	response.sendRedirect("index.jsp");
 }
+
 
 %>

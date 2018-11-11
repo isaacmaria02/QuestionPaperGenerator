@@ -37,6 +37,15 @@ img {
 
 </head>
 <body style="background-color:black;">
+
+
+<form action="LogoutServlet">
+
+<input type="submit" class="btn btn-primary btn-lg" value="Log Out">
+</form>
+
+<a href="AdminHome.jsp"  class="btn btn-primary btn-lg">Back</a>
+
 <form action="AddQuestionServlet" id="addQuestion">
 
 

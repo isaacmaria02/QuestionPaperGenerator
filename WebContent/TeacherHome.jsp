@@ -37,6 +37,12 @@ img {
 
 </head>
 <body style="background-color:black;">
+
+<form action="LogoutServlet">
+
+<input type="submit" class="btn btn-primary btn-lg" value="Log Out">
+</form>
+
 <form action="DownloadQuestionPaperServlet" >
 
 
