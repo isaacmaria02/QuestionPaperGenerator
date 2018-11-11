@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
 		else {
 
 			if(x.searchRecord(lst)) {
-				response.sendRedirect("AdminHome.jsp");
+				response.sendRedirect("TeacherHome.jsp");
 			}
 			else {
 				response.sendRedirect("index.jsp");

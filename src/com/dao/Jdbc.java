@@ -61,6 +61,59 @@ public class Jdbc {
 	}
 	
 	
+	
+	public int insertQuestion(List<Question> lst){
+		Question q =  lst.get(0);
+		
+		try {
+			con=myConnection();
+			
+			
+			ps = con.prepareStatement("insert into question values (question_seq.nextval,?,question_seq.nextval,question_seq.nextval,?,?)");
+			ps.setString(1,q.getQuestion());
+			ps.setString(2,q.getCategory());
+			ps.setInt(3,q.getDifficulty());
+			
+			i = ps.executeUpdate();
+
+			
+			
+			for(String ch : q.getChoice())
+			{
+				ps = con.prepareStatement("insert into choice values (question_seq.currval,?)");
+				ps.setString(1,ch);	
+				
+				i = ps.executeUpdate();
+			}
+			
+			for(String a : q.getAns())
+			{
+				ps = con.prepareStatement("insert into answer values (question_seq.currval,?)");
+				ps.setString(1,a);	
+				
+				i = ps.executeUpdate();
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("test11");
+			e.printStackTrace();
+		}
+		catch(Exception e){
+			System.out.println("global.."+e);
+		}
+		return i;
+	}
+	
+	
 
 	public int updatePassword(String email, String pass){
 		try {

@@ -89,4 +89,14 @@
     <servlet-name>ChangePassword</servlet-name>
     <url-pattern>/ChangePassword</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddQuestionServlet</display-name>
+    <servlet-name>AddQuestionServlet</servlet-name>
+    <servlet-class>com.controller.AddQuestionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddQuestionServlet</servlet-name>
+    <url-pattern>/AddQuestionServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

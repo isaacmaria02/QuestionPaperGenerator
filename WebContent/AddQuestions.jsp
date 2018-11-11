@@ -14,9 +14,9 @@
 
 
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+ -->
 <style>
 
 
@@ -32,80 +32,95 @@ img {
 </style>
  
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 
 </head>
 <body style="background-color:black;">
-<form action="RegistrationServlet">
+<form action="AddQuestionServlet" id="addQuestion">
 
 
 
 
-<div  class="container border border-dark w-100 p-3" style="background-color:lightblue;">
+<div  ng-app=""  class="container border border-dark w-100 p-3" style="background-color:lightblue;padding:50px;">
 
 
+
+
+
+
+<div class="row">
+    <div class="col-sm">
+      <label for="u">Question: </label>
+    </div>
+    <div class="col-sm">  
+<textarea rows="4" cols="50" name="question" form="addQuestion" placeholder="Enter text .."></textarea>
+    </div>
+   
+  </div>
+  
+  <div class="row">
+    <div class="col-sm">
+      <label for="u">Choices: </label>
+    </div>
+    <div class="col-sm">  
+    <input type="text" name="c1" ng-model="choice1">
+    <input type="text" name="c2" ng-model="choice2">
+    <input type="text" name="c3" ng-model="choice3">
+    <input type="text" name="c4" ng-model="choice4">
+    
+    </div>
+   
+  </div>
+  
+  
+  <div class="row">
+    <div class="col-sm">
+      <label for="u">Answer: </label>
+    </div>
+    <div class="col-sm">  
+
+<input type="checkbox" name="ans" value={{choice1}} checked> {{choice1}}<br>
+  <input type="checkbox" name="ans" value={{choice2}}> {{choice2}}<br>
+  <input type="checkbox" name="ans" value={{choice3}}> {{choice3}}<br>
+    <input type="checkbox" name="ans" value={{choice4}}> {{choice4}}<br><br>
+
+    </div>
+   
+  </div>
 
   <div class="row">
     <div class="col-sm">
-      <label for="reg">Registration Number :</label>
-    </div>
-    <div class="col-sm">
-      <input  name="reg" type="number" min=100000 max=599999 size="30" required>
-    </div>
-   
-  </div>
-
-
-<div class="row">
-    <div class="col-sm">
-      <label for="u"> <i class='fas fa-user'></i> Username: </label>
+      <label for="u">Category :  </label>
     </div>
     <div class="col-sm">  
-      <input name="user" type="text"  value=""  size="30" required>
+
+ <select name="category">
+    <option value="Java">Java</option>
+    <option value="Testing">Testing</option>
+    <option value="BIDW">BIDW</option>
+  </select>
+  <br>
+
     </div>
    
   </div>
 
-
-<div class="row">
-    <div class="col-sm">
-      <label for="reg"><i class='fas fa-key'></i> Password :</label>
-    </div>
-    <div class="col-sm">
-      <input name="pass" type="password" value="" size="30" required>
-    </div>
-   
-  </div>
-
-<div class="row">
-    <div class="col-sm">
-      <label for="reg">Birthday :</label>
-    </div>
-    <div class="col-sm">
-      <input type="date" name="bday" value="1990-01-01" size="30" required>
-    </div>
-   
-  </div>
+  
+ 
+  
 
 <div class="row">
     <div class="col-sm">
-      <label for="reg"> </span> <span class="glyphicon glyphicon-envelope"></span> Email :</label>
+      <label for="reg"> Difficulty :  <span>{{slideval}}</span></label>
     </div>
+	
     <div class="col-sm">
-      <input type="email" name="email" size="30" required>
+<input ng-model="slideval" type="range" name="difficulty" min="1" max="5">
     </div>
    
   </div>
-
-<div class="row">
-    <div class="col-sm">
-      <label for="reg"><i class="material-icons">&#xe551;</i> Phone :</label>
-    </div>
-    <div class="col-sm">
-      <input name="phone" pattern="[789][0-9]{9}" type="text" value=""  size="30" required>
-    </div>
-   
-  </div>
+  <br>
 
 <div class="row w-100 p-3" >
 <input style="width:80%;  margin-left: auto; margin-right: auto;" type="submit"  class = "btn btn-primary btn-lg" value="Submit"> 
