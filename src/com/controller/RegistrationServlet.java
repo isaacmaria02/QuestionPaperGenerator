@@ -67,7 +67,6 @@ public class RegistrationServlet extends HttpServlet {
 		
 		
 		HttpSession ses = request.getSession();
-		ses.setAttribute("registered", "Registered");
 		
 		
 		Jdbc x = new Jdbc();
@@ -77,12 +76,17 @@ public class RegistrationServlet extends HttpServlet {
 		
 		if(i>0)
 		{
+			ses.setAttribute("registered", "true");
+
 			response.sendRedirect("AdminHome.jsp");
 
 		}
 		else
+		{
+			ses.setAttribute("registered", "false");
+
 			response.sendRedirect("AdminHome.jsp");
-		
+		}
          		
 		
 		

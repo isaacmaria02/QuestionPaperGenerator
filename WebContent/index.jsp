@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>W3.CSS Template</title>
+<title>Question Paper Generator</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -133,6 +133,8 @@ body {
 		</div>
 	</div>
 
+
+    
 
 	<!-- Modal -->
 	<div id="id02" class="w3-modal">

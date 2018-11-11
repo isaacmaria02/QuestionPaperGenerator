@@ -45,8 +45,6 @@ public class LoginServlet extends HttpServlet {
 		lst.add(l);
 
 		HttpSession ses = request.getSession();
-		ses.setAttribute("userName", l.getUsername());
-		ses.setAttribute("err", "Please enter valid credentials"); 
 
 
 
@@ -55,10 +53,12 @@ public class LoginServlet extends HttpServlet {
 
 		if(request.getParameter("type").equals("admin")) {
 			if(x.searchAdmin(lst)) {
-				
+				ses.setAttribute("err", "false");
+
 				response.sendRedirect("AdminHome.jsp");
 			}
 			else {
+				ses.setAttribute("err", "true");
 				response.sendRedirect("index.jsp");
 			}
 		}

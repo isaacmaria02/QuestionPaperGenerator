@@ -2,11 +2,15 @@
 	pageEncoding="ISO-8859-1"   import="java.util.ArrayList,com.model.Registration"%>
 	
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
+<%
+if(!session.isNew()){
+%>
 	
 <!DOCTYPE html>
 <html>
 <head>
-<title>W3.CSS Template</title>
+<title>Admin</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -56,6 +60,10 @@ border: 1px solid black;
 </head>
 <body>
 
+<form action="LogoutServlet">
+
+<input type="submit" class="btn btn-primary btn-lg" value="Log Out">
+</form>
 
 
 	<!-- Header -->
@@ -124,6 +132,9 @@ border: 1px solid black;
 <%
 if(!session.isNew()){
 
+	
+	
+
 	if(session.getAttribute("display") != null)
 	{
 		%><script>document.getElementById('id03').style.display='block';</script>
@@ -160,7 +171,6 @@ if(!session.isNew()){
 	}
 	
 	
-	session.invalidate();
 }
 
 
@@ -466,3 +476,11 @@ function myFunction() {
 
 </body>
 </html>
+
+<%}
+else
+{
+	response.sendRedirect("index.jsp");
+}
+
+%>
