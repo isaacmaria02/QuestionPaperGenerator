@@ -99,4 +99,14 @@
     <servlet-name>AddQuestionServlet</servlet-name>
     <url-pattern>/AddQuestionServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DownloadQuestionPaperServlet</display-name>
+    <servlet-name>DownloadQuestionPaperServlet</servlet-name>
+    <servlet-class>com.controller.DownloadQuestionPaperServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadQuestionPaperServlet</servlet-name>
+    <url-pattern>/DownloadQuestionPaperServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

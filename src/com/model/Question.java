@@ -1,12 +1,13 @@
 package com.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
 	
 	private String question;
-	private List<String> choice;
-	private List<String> ans;
+	private List<String> choice = new ArrayList<>() ;
+	private List<String> ans = new ArrayList<>();
 	private String category;
 	private int difficulty;
 	
@@ -21,13 +22,22 @@ public class Question {
 		return choice;
 	}
 	public void setChoice(List<String> choice) {
-		this.choice = choice;
+		for(String x:choice)
+		{
+			this.choice.add(x);
+		}
+		
+		
 	}
 	public List<String> getAns() {
 		return ans;
 	}
 	public void setAns(List<String> ans) {
-		this.ans = ans;
+		for(String x:ans)
+		{
+			this.ans.add(x);
+		}
+		
 	}
 	public String getCategory() {
 		return category;

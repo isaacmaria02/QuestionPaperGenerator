@@ -12,7 +12,7 @@ import java.sql.Statement;
 import com.model.*;
 public class Jdbc {
 	Connection con;
-	PreparedStatement ps;
+	PreparedStatement ps,ps1,ps2;
 	int i;
 	public Connection myConnection(){
 		//1.load driver
@@ -331,7 +331,97 @@ public class Jdbc {
 	
 	
 	
+	public List<Question> getQuestions(String category, int difficulty, int no){
+		//String str="select * from question where cat=? and difficulty=?";
+		List<Question> lst = new ArrayList<>();
+		
+		List<String> choice = new ArrayList<>();
+       List<String> answer = new ArrayList<>();
+		
+		Question q;
+		try {
+			con=myConnection();
+			ps = con.prepareStatement("select * from question where cat=? and difficulty=?");
+			ps.setString(1, category);
+			ps.setInt(2, difficulty);
+			
+			
+			ps1 = con.prepareStatement("select ch from choice where cno=?");
+			
+			ps2 = con.prepareStatement("select ans from answer where ano=?");
+			
+			ResultSet rs=ps.executeQuery();
+            ResultSet rs1;
+            ResultSet rs2; 
+            
+            
+
+		
+			while(rs.next())
+			{
+				q = new Question();
+				
+				q.setQuestion(rs.getString(2));
+				
+				
+				ps1.setInt(1, rs.getInt(1));
+				ps2.setInt(1, rs.getInt(1));
+				
+				System.out.println(rs.getInt(1));
+				
+				rs1=ps1.executeQuery();
+				rs2=ps2.executeQuery();
+				
+				while(rs1.next())
+				{
+					System.out.println(rs1.getString(1));
+					
+					choice.add(rs1.getString(1));
+					
+				}
+				rs1.close();
+				System.out.println("choice "+choice);
+				q.setChoice(choice);
+				
+				System.out.println("after choice is added "+q);
+				
+				
+				
+				
+				while(rs2.next())
+				{
+					
+					System.out.println(rs2.getString(1));
+					answer.add(rs2.getString(1));
+					
+				}
+				rs2.close();
+				System.out.println("answer "+answer);
+				q.setAns(answer);
+				
+				System.out.println("after answer is added "+q);
+				
+				
+				
+				
+				//adding to the list
+				lst.add(q);
+				
+				answer.clear();
+				choice.clear();
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("before return "+lst);
 	
+		
+		return lst;
+
+	}
 	
 	
 	public List<Registration> displayAll(){
