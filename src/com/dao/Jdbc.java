@@ -341,9 +341,10 @@ public class Jdbc {
 		Question q;
 		try {
 			con=myConnection();
-			ps = con.prepareStatement("select * from question where cat=? and difficulty=?");
+			ps = con.prepareStatement("select * from question where cat=? and difficulty=? and rownum<=?");
 			ps.setString(1, category);
 			ps.setInt(2, difficulty);
+			ps.setInt(3, no);
 			
 			
 			ps1 = con.prepareStatement("select ch from choice where cno=?");

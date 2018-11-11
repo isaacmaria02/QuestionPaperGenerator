@@ -112,9 +112,10 @@ img {
 <input style="width:80%;  margin-left: auto; margin-right: auto;" type="submit"  class = "btn btn-primary btn-lg" value="Submit"> 
   </div>
   </form>
+  <br><br>
+  <a href="download.jsp">Click here to download Question Paper</a>  <br>
   
-  <a href="download.jsp">download the jsp file</a>  
-  
+  <a href="downloadsolution.jsp">Click here to download Solution</a>  
   
 </div>
 

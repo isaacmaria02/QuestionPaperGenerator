@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,29 +47,48 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("noofquestions"));
 		
 		
+		questionPaper(category,difficulty,no);
 		
+		answerPaper(category,difficulty,no);
 		
+	      
+	      
+	      response.sendRedirect("TeacherHome.jsp");
+	      
+	      
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
+	public void answerPaper(String category, int difficulty, int no) throws IOException
+	{
+
 		//Blank Document
 	      XWPFDocument document = new XWPFDocument(); 
 	      
 	      //Write the Document in file system
-	      FileOutputStream out = new FileOutputStream(new File("C:\\Users\\Isaac Ivan\\eclipse-workspace\\QuestionPaperGenerator\\papers\\questionpaper.docx"));
+	      FileOutputStream out;
+		
+			out = new FileOutputStream(new File("C:\\Users\\Isaac Ivan\\eclipse-workspace\\QuestionPaperGenerator\\papers\\answerpaper.docx"));
+		
 	        
 	      //create Paragraph
 	      XWPFParagraph paragraph = document.createParagraph();
 	      XWPFRun run = paragraph.createRun();
 	      run.setFontSize(18);
 	      paragraph.setAlignment(ParagraphAlignment.CENTER);
-	      run.setText("Java Test");   
+	      run.setText("Java Test Solution");   
 	     
 	      
 	      
-	      //new paragraph
-	      paragraph = document.createParagraph();
-	      run = paragraph.createRun();
-	      paragraph.setAlignment(ParagraphAlignment.RIGHT);
-	      run.setText("2 hours");
-	      
+	   
 	     
 	    /*  Question quest = new Question();
 	      List<String> ch = new ArrayList<>();
@@ -104,6 +124,8 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	      
 	      Jdbc x= new Jdbc();
 	      List<Question> q = x.getQuestions(category, difficulty, no);
+	      
+	      System.out.println("Get questions method "+q);
 
 	      
 	      int questCount=0;
@@ -113,7 +135,110 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	     
 	      for(int i = 0; i<q.size(); i++)
 	      {
+	    	  System.out.println("size :"+q.size());
+		      System.out.println("inside servlet "+q.get(i));
+
 	    	  
+	      paragraph = document.createParagraph();
+	      run = paragraph.createRun();
+	      paragraph.setAlignment(ParagraphAlignment.LEFT);
+	      char opt='a';
+	      
+	      questCount++;
+	      run.setText(questCount+")"+q.get(i).getQuestion());
+	      run.addBreak();
+	      
+	      
+	      for(String c : q.get(i).getAns())
+	      {
+	    	  
+	    	  run.setText(opt+")"+c);
+	    	  opt++;
+	    	  run.addBreak();
+	      }
+	      run.addBreak();
+	      }
+	                  
+	   	      
+	      
+	      
+	      document.write(out);
+	      out.close();
+	      System.out.println("ANSWER PAPER CREATED");
+	}
+	
+	public void questionPaper(String category, int difficulty, int no) throws IOException
+	{
+		//Blank Document
+	      XWPFDocument document = new XWPFDocument(); 
+	      
+	      //Write the Document in file system
+	      FileOutputStream out;
+		
+			out = new FileOutputStream(new File("C:\\Users\\Isaac Ivan\\eclipse-workspace\\QuestionPaperGenerator\\papers\\questionpaper.docx"));
+		
+	        
+	      //create Paragraph
+	      XWPFParagraph paragraph = document.createParagraph();
+	      XWPFRun run = paragraph.createRun();
+	      run.setFontSize(18);
+	      paragraph.setAlignment(ParagraphAlignment.CENTER);
+	      run.setText("Java Test");   
+	     
+	      //create Paragraph
+	      paragraph = document.createParagraph();
+	      run = paragraph.createRun();
+	      paragraph.setAlignment(ParagraphAlignment.RIGHT);
+	      run.setText("2 hrs");     
+	      
+	   
+	     
+	    /*  Question quest = new Question();
+	      List<String> ch = new ArrayList<>();
+	      
+	      
+	      ch.add("a");
+	      ch.add("b");
+	      ch.add("c");
+	      ch.add("d");
+	      
+	      quest.setQuestion("wht is jvm");
+	      quest.setChoice(ch);
+	      
+	     List<Question> q = new ArrayList<>();
+	     q.add(quest);
+	     
+	   quest = new Question();
+	     ch = new ArrayList<>();
+	      
+	      
+	      ch.add("aa");
+	      ch.add("bs");
+	      ch.add("cd");
+	      ch.add("df");
+	      
+	      quest.setQuestion("wht is jre");
+	      quest.setChoice(ch);
+	     
+	     
+	     q.add(quest);
+	     
+	      */
+	      
+	      Jdbc x= new Jdbc();
+	      List<Question> q = x.getQuestions(category, difficulty, no);
+	      
+	      System.out.println("Get questions method "+q);
+
+	      
+	      int questCount=0;
+	      
+	      
+	      
+	     
+	      for(int i = 0; i<q.size(); i++)
+	      {
+	    	  System.out.println("size :"+q.size());
 		      System.out.println("inside servlet "+q.get(i));
 
 	    	  
@@ -136,41 +261,13 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	      }
 	      run.addBreak();
 	      }
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	      
-	  
-	      
-	      
-	      
-	      
-	      
+	                  
+	   	      
 	      
 	      
 	      document.write(out);
 	      out.close();
 	      System.out.println("QUESTION PAPER CREATED");
-	      
-	      
-	      response.sendRedirect("TeacherHome.jsp");
-	      
-	      
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
