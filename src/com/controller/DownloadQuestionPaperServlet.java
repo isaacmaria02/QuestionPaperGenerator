@@ -46,10 +46,14 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 		int difficulty = Integer.parseInt(request.getParameter("difficulty"));
 		int no = Integer.parseInt(request.getParameter("noofquestions"));
 		
+		Jdbc x = new Jdbc();
+	      List<Question> q = x.getQuestions(category, difficulty, no);
+
 		
-		questionPaper(category,difficulty,no);
 		
-		answerPaper(category,difficulty,no);
+		questionPaper(category,difficulty,no,q);
+		
+		answerPaper(category,difficulty,no,q);
 		
 	      
 	      
@@ -67,7 +71,7 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void answerPaper(String category, int difficulty, int no) throws IOException
+	public void answerPaper(String category, int difficulty, int no, List<Question> l) throws IOException
 	{
 
 		//Blank Document
@@ -122,8 +126,10 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	     
 	      */
 	      
-	      Jdbc x= new Jdbc();
-	      List<Question> q = x.getQuestions(category, difficulty, no);
+	     // Jdbc x= new Jdbc();
+	 //     List<Question> q = x.getQuestions(category, difficulty, no);
+	      List<Question> q = l;
+
 	      
 	      System.out.println("Get questions method "+q);
 
@@ -167,7 +173,7 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	      System.out.println("ANSWER PAPER CREATED");
 	}
 	
-	public void questionPaper(String category, int difficulty, int no) throws IOException
+	public void questionPaper(String category, int difficulty, int no, List<Question> l) throws IOException
 	{
 		//Blank Document
 	      XWPFDocument document = new XWPFDocument(); 
@@ -225,8 +231,10 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	     
 	      */
 	      
-	      Jdbc x= new Jdbc();
-	      List<Question> q = x.getQuestions(category, difficulty, no);
+	   //   Jdbc x= new Jdbc();
+	   //   List<Question> q = x.getQuestions(category, difficulty, no);
+	      
+	      List<Question> q = l;
 	      
 	      System.out.println("Get questions method "+q);
 
