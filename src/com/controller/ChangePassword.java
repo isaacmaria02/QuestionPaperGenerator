@@ -1,10 +1,13 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dao.Jdbc;
 
@@ -31,6 +34,8 @@ public class ChangePassword extends HttpServlet {
 		
 		String pass = request.getParameter("password");
 		
+		PrintWriter out = response.getWriter();
+		
 		
 		System.out.println("IN change pw servlet "+email+" "+pass);
 		
@@ -38,14 +43,21 @@ public class ChangePassword extends HttpServlet {
 		
 		int i = x.updatePassword(email,pass);
 		
+		
+		
 		if(i>0)
 		{
-			response.sendRedirect("index.jsp");
+			
+			out.println("<script language='javascript'>window.alert('Password updated successfully');window.location.href='index.jsp';</script>");
+
+		//	response.sendRedirect("index.jsp");
 
 		}
 		else
 		{
-			response.sendRedirect("ForgotPassword.jsp");
+			out.println("<script language='javascript'>window.alert('Error updating the password');window.location.href='ForgotPassword.jsp';</script>");
+
+		//	response.sendRedirect("ForgotPassword.jsp");
 
 		}
 		

@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,7 @@ public class DeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		PrintWriter out = response.getWriter();
 		
 		Jdbc x = new Jdbc();
 		int tid = Integer.parseInt(request.getParameter("tid"));
@@ -36,11 +39,15 @@ public class DeleteServlet extends HttpServlet {
 		
 		if(i>0)
 		{
-			response.sendRedirect("AdminHome.jsp");
+			out.println("<script language='javascript'>window.alert('Record deleted successfully');window.location.href='AdminHome.jsp';</script>");
+
+		//	response.sendRedirect("AdminHome.jsp");
 		}
 		else
 		{
-			response.sendRedirect("AdminHome.jsp");
+			out.println("<script language='javascript'>window.alert('Teacher ID does not exist');window.location.href='AdminHome.jsp';</script>");
+
+		//	response.sendRedirect("AdminHome.jsp");
 		}
 		
 		

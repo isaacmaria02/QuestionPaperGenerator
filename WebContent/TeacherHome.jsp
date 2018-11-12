@@ -60,7 +60,7 @@ img {
       <label for="u">Enter Title: </label>
     </div>
     <div class="col-sm">  
-	<input type="text" name="title">
+	<input type="text" name="title" required>
     </div>
    
   </div>
@@ -87,7 +87,7 @@ img {
       <label for="u">Enter no of hours: </label>
     </div>
     <div class="col-sm">  
-	<input type="number" name="hours" min=0>
+	<input type="number" name="hours" min=0 required>
     </div>
    
   </div>
@@ -97,7 +97,7 @@ img {
       <label for="u">Enter Difficulty: </label>
     </div>
     <div class="col-sm">  
-	<input type="number" name="difficulty" min=1 max=5>
+	<input type="number" name="difficulty" min=1 max=5 required>
     </div>
    
   </div><br>
@@ -107,7 +107,7 @@ img {
       <label for="u">Enter no of questions: </label>
     </div>
     <div class="col-sm">  
-	<input type="number" name="noofquestions" min=0>
+	<input type="number" name="noofquestions" min=0 required>
     </div>
    
   </div>
@@ -119,9 +119,10 @@ img {
   </div>
   </form>
   <br><br>
-  <a href="download.jsp">Click here to download Question Paper</a>  <br>
   
-  <a href="downloadsolution.jsp">Click here to download Solution</a>  
+  <a href="download.jsp" class="btn btn-info">Click here to download Question Paper</a>  <br><br>
+  
+  <a href="downloadsolution.jsp" class="btn btn-info">Click here to download Solution</a>  
   
 </div>
 

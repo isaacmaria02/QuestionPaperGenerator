@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +35,8 @@ public class AddQuestionServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String question = request.getParameter("question");
+		
+		PrintWriter out = response.getWriter();
 
 		
 		List<String> choice = new ArrayList<>();
@@ -74,10 +77,12 @@ public class AddQuestionServlet extends HttpServlet {
 		
 		if(i>0)
 		{
-		    response.sendRedirect("AddQuestions.jsp");	
+			out.println("<script language='javascript'>window.alert('Questions added successfully');window.location.href='AddQuestions.jsp';</script>");
 		}
 		else
 		{
+			out.println("<script language='javascript'>window.alert('Questions not added');window.location.href='AddQuestions.jsp';</script>");
+
 		    response.sendRedirect("AddQuestions.jsp");	
 
 		}

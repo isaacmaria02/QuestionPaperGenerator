@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +31,8 @@ public class ForgotPasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Jdbc x = new Jdbc();
+
+		PrintWriter out = response.getWriter();
 		
 		String email = request.getParameter("email");
 		String quest="";
@@ -45,15 +49,17 @@ public class ForgotPasswordServlet extends HttpServlet {
 			
 			ses.setAttribute("question",quest);
 			
+
 			
-			
-			ses.setAttribute("isEmailCorrect", true);
-			response.sendRedirect("ForgotPassword.jsp");
+		ses.setAttribute("isEmailCorrect", true);
+ 	response.sendRedirect("ForgotPassword.jsp");
 			
 		}
 		else
 		{
 			ses.setAttribute("isEmailCorrect", false);
+
+       //    out.println("<script language='javascript'>window.alert('Please enter valid email');window.location.href='ForgotPassword.jsp';</script>");
 			response.sendRedirect("ForgotPassword.jsp");
 
 		}

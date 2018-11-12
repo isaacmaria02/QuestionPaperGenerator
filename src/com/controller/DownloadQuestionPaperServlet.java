@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.xwpf.usermodel.Borders;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -45,15 +46,17 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 		String category=request.getParameter("category");
 		int difficulty = Integer.parseInt(request.getParameter("difficulty"));
 		int no = Integer.parseInt(request.getParameter("noofquestions"));
+		String title = request.getParameter("title");
+		String hours = request.getParameter("hours");
 		
 		Jdbc x = new Jdbc();
 	      List<Question> q = x.getQuestions(category, difficulty, no);
 
 		
 		
-		questionPaper(category,difficulty,no,q);
+		questionPaper(title, hours,category,difficulty,no,q);
 		
-		answerPaper(category,difficulty,no,q);
+		answerPaper(title, hours,category,difficulty,no,q);
 		
 	      
 	      
@@ -71,7 +74,7 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void answerPaper(String category, int difficulty, int no, List<Question> l) throws IOException
+	public void answerPaper(String title, String hours,String category, int difficulty, int no, List<Question> l) throws IOException
 	{
 
 		//Blank Document
@@ -88,7 +91,7 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	      XWPFRun run = paragraph.createRun();
 	      run.setFontSize(18);
 	      paragraph.setAlignment(ParagraphAlignment.CENTER);
-	      run.setText("Java Test Solution");   
+	      run.setText(title+" Solution");   
 	     
 	      
 	      
@@ -173,7 +176,7 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	      System.out.println("ANSWER PAPER CREATED");
 	}
 	
-	public void questionPaper(String category, int difficulty, int no, List<Question> l) throws IOException
+	public void questionPaper(String title, String hours,String category, int difficulty, int no, List<Question> l) throws IOException
 	{
 		//Blank Document
 	      XWPFDocument document = new XWPFDocument(); 
@@ -189,13 +192,16 @@ public class DownloadQuestionPaperServlet extends HttpServlet {
 	      XWPFRun run = paragraph.createRun();
 	      run.setFontSize(18);
 	      paragraph.setAlignment(ParagraphAlignment.CENTER);
-	      run.setText("Java Test");   
+	      run.setText(title);   
 	     
 	      //create Paragraph
 	      paragraph = document.createParagraph();
 	      run = paragraph.createRun();
 	      paragraph.setAlignment(ParagraphAlignment.RIGHT);
-	      run.setText("2 hrs");     
+	      run.setText("Duration : "+hours+" hours");    
+	      
+	      paragraph = document.createParagraph();
+	      paragraph.setBorderBottom(Borders.SINGLE);
 	      
 	   
 	     

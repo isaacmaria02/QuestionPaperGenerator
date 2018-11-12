@@ -26,8 +26,7 @@
 <body>
 
 <div  id="enterEmail" class="container">
-  <h2>Form control: input</h2>
-  <p>The form below contains two input elements; one of type text and one of type password:</p>
+  <h2>Please enter your Email ID</h2>
   <form action="ForgotPasswordServlet">
     <div class="form-group">
       <label for="usr">Enter email:</label>
@@ -140,6 +139,7 @@ function validate() {
 		   <%	
 	}
 }
+
 %>
 
 
