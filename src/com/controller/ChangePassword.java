@@ -43,7 +43,8 @@ public class ChangePassword extends HttpServlet {
 		
 		int i = x.updatePassword(email,pass);
 		
-		
+		HttpSession ses = request.getSession();
+		ses.invalidate();
 		
 		if(i>0)
 		{

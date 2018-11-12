@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%
+
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+
+if(session!=null)
+{
+	if(session.getAttribute("isLoggedIn")==null)
+	{
+		
+		response.sendRedirect("index.jsp");
+	}
+}
+
+
+%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -27,7 +43,7 @@
 
 <div  id="enterEmail" class="container">
   <h2>Please enter your Email ID</h2>
-  <form action="ForgotPasswordServlet">
+  <form action="ForgotPasswordServlet" method="post">
     <div class="form-group">
       <label for="usr">Enter email:</label>
       <input id="emailval" type="email" class="form-control" name="email">
@@ -49,7 +65,7 @@ if(session.getAttribute("isEmailCorrect") != null){
 	   
 	   <div id="qna"  class="container">
   <h2>Question Answer</h2>
-  <form action="UpdatePasswordServlet">
+  <form action="UpdatePasswordServlet" method="post">
    <div class="form-group">
       <label for="usr">Question :</label>
       <label for="usr"><%=session.getAttribute("question") %></label>
@@ -91,7 +107,7 @@ if(session.getAttribute("isAnswerCorrect") != null)
 		   
 	<div id="newpassword" ng-app="forbode" class="container">
 	<H2>Reset Password</H2>
-	<form onsubmit="return validate()" name="testForm" action="ChangePassword" ng-controller="testController">
+	<form onsubmit="return validate()" method="post" name="testForm" action="ChangePassword" ng-controller="testController">
 				
 	
 		

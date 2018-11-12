@@ -3,9 +3,23 @@
 	
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
+
 <%
-if(session.getAttribute("isLoggedIn")!=null){
+
+response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+
+if(session!=null)
+{
+	if(session.getAttribute("isLoggedIn")==null)
+	{
+		
+		response.sendRedirect("index.jsp");
+	}
+}
+
+
 %>
+
 	
 <!DOCTYPE html>
 <html>
@@ -60,7 +74,7 @@ border: 1px solid black;
 </head>
 <body>
 
-<form action="LogoutServlet">
+<form action="LogoutServlet" method="post">
 
 <input type="submit" class="btn btn-primary btn-lg" value="Log Out">
 </form>
@@ -123,7 +137,7 @@ border: 1px solid black;
 <h2>Teacher Details</h2>
 
 
-<form action="DisplayServlet">
+<form action="DisplayServlet" method="post">
 
 <input type="submit" value="Display">
 </form>
@@ -167,6 +181,8 @@ border: 1px solid black;
     
     
         <%
+        
+        session.removeAttribute("display");
 	}
 	
 	
@@ -270,7 +286,7 @@ function myFunction() {
 			<div class="w3-padding">
 
 
-				<form action="DeleteServlet">
+				<form action="DeleteServlet" method="post">
 
 					<div class="container border border-dark">
 
@@ -478,12 +494,6 @@ function myFunction() {
 
 <%
 
-}
-else
-
-{
-	response.sendRedirect("index.jsp");
-}
 
 
 %>

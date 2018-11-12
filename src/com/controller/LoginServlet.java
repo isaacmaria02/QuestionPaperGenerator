@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
+		
+		PrintWriter out = response.getWriter();
 
 		System.out.println(request.getParameter("type"));
 
@@ -62,7 +65,9 @@ public class LoginServlet extends HttpServlet {
 			}
 			else {
 				ses.setAttribute("err", "true");
-				response.sendRedirect("index.jsp");
+				out.println("<script language='javascript'>window.alert('Invalid Credentials');window.location.href='index.jsp';</script>");
+
+				//response.sendRedirect("index.jsp");
 			}
 		}
 		else {
@@ -71,7 +76,9 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect("TeacherHome.jsp");
 			}
 			else {
-				response.sendRedirect("index.jsp");
+				out.println("<script language='javascript'>window.alert('Invalid Credentials');window.location.href='index.jsp';</script>");
+
+			//	response.sendRedirect("index.jsp");
 			}
 
 		}

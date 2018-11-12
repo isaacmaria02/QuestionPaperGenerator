@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	
+	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +87,7 @@ body {
 			<div class="w3-padding">
 
 
-				<form action="LoginServlet">
+				<form action="LoginServlet" method="post">
 
 					<div class="container border border-dark">
 
@@ -149,7 +153,7 @@ body {
 			<div class="w3-padding">
 
 
-				<form action="LoginServlet">
+				<form action="LoginServlet" method="post">
 
 					<div class="container border border-dark">
 
